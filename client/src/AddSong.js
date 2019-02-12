@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
-import { getArtistsQuery } from './queries';
+import { graphql, compose } from 'react-apollo';
+import { getArtistsQuery, addSongMutation } from './queries';
 
 class AddSong extends Component {
   constructor(props) {
@@ -14,7 +14,8 @@ class AddSong extends Component {
   }
 
   displayArtists() {
-    let data = this.props.data;
+    console.log(this.props)
+    let data = this.props.getArtistsQuery;
 
     if (data.loading) {
       return( <option>Loading artists...</option> );
@@ -27,15 +28,21 @@ class AddSong extends Component {
 
   submitForm(e) {
     e.preventDefault();
-    console.log(this.state);
-  }   
+    this.props.addSongMutation({
+      variables: {
+        title: this.state.title,
+        genre: this.state.genre,
+        artistId: this.state.artistId
+      }
+    })
+  }  
 
   render() {
     return (
       <form onSubmit={this.submitForm.bind(this)}>
         <div>
           <label>Song Title:</label>
-          <input type="text" onChange={(e) => this.setState({name: e.target.value})}/>
+          <input type="text" onChange={(e) => this.setState({title: e.target.value})}/>
         </div>
         <div>
           <label>Genre:</label>
@@ -54,4 +61,7 @@ class AddSong extends Component {
   }
 }
 
-export default graphql(getArtistsQuery)(AddSong);
+export default compose(
+  graphql(getArtistsQuery, { name: "getArtistsQuery" }),
+  graphql(addSongMutation, { name: "addSongMutation" })
+)(AddSong);
