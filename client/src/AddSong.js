@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import { gql } from 'apollo-boost';
 import { graphql } from 'react-apollo';
-
-// construct the query
-const getArtistsQuery = gql`
-  {
-    artists{
-      name
-      id
-    }    
-  }
-`
+import { getArtistsQuery } from './queries';
 
 class AddSong extends Component {
-  
+  constructor(props) {
+    super()
+
+    this.state = {
+      title: '',
+      genre: '',
+      artistId: ''
+    }
+  }
+
   displayArtists() {
     let data = this.props.data;
 
@@ -26,20 +25,25 @@ class AddSong extends Component {
     }
   }
 
-  render() {   
+  submitForm(e) {
+    e.preventDefault();
+    console.log(this.state);
+  }   
+
+  render() {
     return (
-      <form>
-        <div className="field">
+      <form onSubmit={this.submitForm.bind(this)}>
+        <div>
           <label>Song Title:</label>
-          <input type="text"/>
+          <input type="text" onChange={(e) => this.setState({name: e.target.value})}/>
         </div>
-        <div className="field">
+        <div>
           <label>Genre:</label>
-          <input type="text"/>
+          <input type="text" onChange={(e) => this.setState({genre: e.target.value})} />
         </div>
-        <div className="field">
+        <div>
           <label>Artist:</label>
-          <select>
+          <select onChange={(e) => this.setState({artistId: e.target.value})}>
             <option>Select Artist</option>
             { this.displayArtists() }
           </select>
@@ -50,6 +54,4 @@ class AddSong extends Component {
   }
 }
 
-// bind this query to this component
-// the data will be stored in the component's props
 export default graphql(getArtistsQuery)(AddSong);
