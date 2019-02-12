@@ -83,6 +83,47 @@ const RootQuery = new GraphQLObjectType({
   }  
 });
 
+const Mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    addArtist: {
+      type: ArtistType,
+      args: { 
+        name: { type: GraphQLString },
+        grammys: { type: GraphQLInt }
+      },
+      resolve(parent, args){
+        //Mongoose
+        let artist = new ArtistMongooseModel({
+          name: args.name,
+          grammys: args.grammys
+        });
+
+        return artist.save();
+      }
+    },
+    addSong: {
+      type: SongType,
+      args: { 
+        title: { type: GraphQLString },
+        genre: { type: GraphQLString },
+        artistId: { type: GraphQLID }
+      },
+      resolve(parent, args){
+        //Mongoose
+        let song = new SongMongooseModel({
+          title: args.title,
+          genre: args.genre,
+          artistId: args.artistId
+        });
+
+        return song.save();
+      }
+    }
+  }
+});
+
 module.exports = new GraphQLSchema({
-  query: RootQuery
+  query: RootQuery,
+  mutation: Mutation
 });
