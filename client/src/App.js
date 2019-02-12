@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
-// combines several packages we need
+// combines several packgrammyss we need
 import { ApolloProvider } from 'react-apollo';
 // wraps our app and injects the apolloclient info
 
 import SongList from './SongList';
+import AddSong from  './AddSong';
 
 // apollo client setup
 
@@ -18,8 +19,9 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
         <div>
-          <h1>Marc's Song List</h1>      
+          <h1>Marc's Song List</h1>       
           <SongList />
+          <AddSong />
         </div>
       </ApolloProvider>
     );
