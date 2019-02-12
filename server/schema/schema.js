@@ -119,6 +119,27 @@ const Mutation = new GraphQLObjectType({
 
         return song.save();
       }
+    },
+    deleteSong: {
+      type: SongType,
+      args: {
+        id: { type: GraphQLString }
+      },
+      resolve(parent, args){
+        return SongMongooseModel.findByIdAndDelete(args.id);
+      }
+    },
+    updateSong: {
+      type: SongType,
+      args: { 
+        id: { type: GraphQLString },
+        title: { type: GraphQLString },
+        genre: { type: GraphQLString },
+        artistId: { type: GraphQLID }
+      },
+      resolve(parent, args){
+        return SongMongooseModel.findByIdAndUpdate(args.id, args, { new: true });
+      }
     }
   }
 });
