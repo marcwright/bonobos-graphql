@@ -1,24 +1,19 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const artistSchema = new Schema({
+const ArtistMongooseModel = mongoose.model('Artist', {
   name: String,
   grammys: Number
 });
-
-const songSchema = new Schema({
+const SongMongooseModel = mongoose.model('Song', {
   title: String,
   genre: String,
   artistId: String
 });
 
-const ArtistMongooseModel = mongoose.model('Artist', artistSchema);
-const SongMongooseModel = mongoose.model('Song', songSchema);
-
 const songs = [
-  {title: '7 Ringsx', genre: 'Pop'},
-  {title: 'Without Mex', genre: 'Pop'},
-  {title: 'Shallowx', genre: 'Rock'}
+  {title: '7 Rings', genre: 'Pop'},
+  {title: 'Without Me', genre: 'Pop'},
+  {title: 'Shallow', genre: 'Rock'}
 ];
 
 const artists = [
