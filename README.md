@@ -1608,28 +1608,30 @@ This will persist to MongoDB Apollo, but it isn't yet updating the DOM!
 
 ## Refetching Queries
 
-Import `getsongsQuery` from `queries.js`.
+Import `getSongsQuery` from `queries.js`.
 
 ```js
-import { getartistsQuery, addsongMutation, getsongsQuery } from '../queries/queries';
+// AddSong.js
+
+import { getArtistsQuery, addSongMutation, getSongsQuery } from './queries';
 ...
 
-submitForm(e) {
+  submitForm(e) {
     e.preventDefault();
-    this.props.addsongMutation({
+    this.props.addSongMutation({
       variables: {
-        name: this.state.name,
-        genre: this.state.name,
+        title: this.state.title,
+        genre: this.state.genre,
         artistId: this.state.artistId
       },
-      refetchQueries: [{ query: getsongsQuery }]
+      refetchQueries: [{ query: getSongsQuery }]
     })
   }  
 ```
 
 <br>
 
-## song Details Component
+## `SongDetails` Component
 
 1. `touch src/components/songDetails.js`
 

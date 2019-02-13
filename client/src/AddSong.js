@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { graphql, compose } from 'react-apollo';
-import { getArtistsQuery, addSongMutation } from './queries';
+import { getArtistsQuery, addSongMutation, getSongsQuery } from './queries';
 
 class AddSong extends Component {
   constructor(props) {
@@ -33,9 +33,10 @@ class AddSong extends Component {
         title: this.state.title,
         genre: this.state.genre,
         artistId: this.state.artistId
-      }
+      },
+      refetchQueries: [{ query: getSongsQuery }]
     })
-  }  
+  } 
 
   render() {
     return (
