@@ -1076,7 +1076,7 @@ body {
 
 1. `touch src/SongList.js`
 
-```js
+```jsx
 // src/SongList.js
 
 import React, { Component } from 'react';
@@ -1095,8 +1095,9 @@ class SongList extends Component {
 
 export default SongList;
 ```
+<br>
 
-```js
+```jsx
 // App.js
 
 import React, { Component } from 'react';
@@ -1127,7 +1128,7 @@ Can be used with other libraries.
 
 12. `npm install apollo-boost react-apollo graphql`
 
-```js
+```jsx
 // App.js
 
 import React, { Component } from 'react';
