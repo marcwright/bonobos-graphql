@@ -1176,7 +1176,7 @@ Makes queries to the server from frontend
 First, to create queries we need to import a packge called `gql`. We'll also console.log our props
 
 
-```js
+```jsx
 // SongList.js
 
 import React, { Component } from 'react';
@@ -1247,7 +1247,7 @@ You will see the data object loading twice. Once when the data is `loading: true
 We can use the fetching property to know when to add data to the component.
 If you check the console we'll get an error saying we need to add a `key` prop to each element.
 
-```js
+```jsx
 // SongList.js
 
 ...
@@ -1286,7 +1286,7 @@ class SongList extends Component {
 
 1. `touch src/AddSong.js`
 
-```js
+```jsx
 // AddSong.js
 
 import React, { Component } from 'react';
@@ -1348,10 +1348,11 @@ export default graphql(getArtistsQuery)(AddSong);
 
 Also, import this new component in `App.js`
 
-```js
+```jsx
 import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
-// combines several packgrammyss we need
+// combines several packages we need
+
 import { ApolloProvider } from 'react-apollo';
 // wraps our app and injects the apolloclient info
 
@@ -1386,11 +1387,11 @@ export default App;
 
 ## External Query File
 
-2. `touch src/queries.js`
-3. Move the gql queries to the new file
-4. Import the new file
+1. `touch src/queries.js`
+1. Move the gql queries to the new file
+1. Import the new file
 
-```js
+```jsx
 // queries.js
 
 import { gql } from 'apollo-boost';
@@ -1417,6 +1418,7 @@ const getSongsQuery = gql`
 
 export { getArtistsQuery, getSongsQuery }; 
 ```
+<br>
 
 ```js
 // SongList.js
@@ -1428,6 +1430,7 @@ import { getSongsQuery } from './queries';
 ...
 
 ```
+<br>
 
 ```js
 // AddSong.js
@@ -1636,7 +1639,7 @@ import { getArtistsQuery, addSongMutation, getSongsQuery } from './queries';
 
 1. `touch src/components/songDetails.js`
 
-```js
+```jsx
 // songDetails.js
 
 import React, { Component } from 'react';
@@ -1684,7 +1687,7 @@ const getsongQuery = gql`
 export { getartistsQuery, getsongsQuery, addsongMutation, getsongQuery }; 
 ```
 
-```js
+```jsx
 // songList.js
 
 ...
