@@ -1637,44 +1637,44 @@ import { getArtistsQuery, addSongMutation, getSongsQuery } from './queries';
 
 ## `SongDetails` Component
 
-1. `touch src/components/songDetails.js`
+1. `touch src/components/SongDetails.js`
 
 ```jsx
-// songDetails.js
+// SongDetails.js
 
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { getsongQuery } from '../queries/queries';
+import { getSongQuery } from '../queries/queries';
 
-class songDetails extends Component {
+class SongDetails extends Component {
   render() {
     return (
-      <div id="song-details">
+      <div>
         <p>Output song Details here</p>
       </div>
     );
   }
 }
 
-export default graphql(getsongQuery)(songDetails);
+export default graphql(getSongQuery)(SongDetails);
 ```
 
 
 ```js
 // queries.js
 
-const getsongQuery = gql`
+const getSongQuery = gql`
   query($id: ID){
     song(id: $id){
       id
-      name
+      title
       genre
       artist{
         id
         name
         grammys
         songs{
-          name
+          title
           id
         }
       }
@@ -1684,15 +1684,15 @@ const getsongQuery = gql`
 
 ...
 
-export { getartistsQuery, getsongsQuery, addsongMutation, getsongQuery }; 
+export { getArtistsQuery, getSongsQuery, addSongMutation, getSongQuery }; 
 ```
 
 ```jsx
-// songList.js
+// SongList.js
 
 ...
 
-import songDetails from './songDetails';
+import SongDetails from './SongDetails';
 
 ...
 
@@ -1700,10 +1700,10 @@ import songDetails from './songDetails';
     console.log(this.props)
     return (
       <div>
-        <ul id="song-list">
-          { this.displaysongs() }
+        <ul>
+          { this.displaySongs() }
         </ul>      
-        <songDetails />
+        <SongDetails />
       </div>
     );
   }
