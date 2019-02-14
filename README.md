@@ -6,10 +6,11 @@
 
 - Understand GraphQL and why it's powerful
 - Demonstrate how to compose a GraphQL schema
-- Explain GraphQL queries and mutations
-- Use GraphQL to interact with a mLab database
+- Explain GraphQL queries, mutations and resolvers
+- Use GraphQL to interact with a MongoDB Atlas database cluster
 - Demonstrate how to perform CRUD on a resource
 - Demonstrate how to build an association via GraphQL
+- Understand how Apollo and Graphql are used client-side
 
 <br>
 
@@ -17,7 +18,13 @@
 
 [GraphQL Docs](https://graphql.org/)
 
-GraphQL is a very powerful query language that communicates between browser and a server. Traditionally, a RESTful approach would have separate endpoints for `songs` and `artists`:
+GraphQL is a very powerful query language that communicates between browser and a server.
+
+> GraphQL was developed internally by Facebook in 2012 before being publicly released in 2015.On 7 November 2018, the GraphQL project was moved from Facebook to the newly-established GraphQL foundation, hosted by the non-profit Linux Foundation.
+ 
+> Wikipedia
+
+Traditionally, a RESTful approach would have separate endpoints for `songs` and `artists`:
 
 - GET all songs: `domain.com/songs`
 - GET a single song: `domain.com/songs/:id`
@@ -31,17 +38,17 @@ Navigate a graph to get the data then send it all back. With GraphQL you ask for
 
 ```js
 {
-	song(id: 123) {
-		title
-		genre
-		artist {
-			name
-			grammys
-			songs {
-				name
-			}
+  song(id: 123) {
+	title
+	genre
+	artist {
+		name
+		grammys
+		songs {
+		  name
 		}
-	}
+	 }
+  }
 }
 ```
 
@@ -136,7 +143,7 @@ const graphql = require('graphql'); // The graphql library
 const _ = require('lodash'); 
 
 const { GraphQLObjectType, GraphQLString } = graphql;
-// Using destructuring we'll bring in the Object types we want on the graph
+// Import Object types we want on the graph via destructuring
 // Describe songs and artists
 
 const SongType = new GraphQLObjectType({
@@ -202,8 +209,8 @@ For example, client side (or in GraphiQL), the query may look like so:
 
 ```js
 song(id: "2"){
-	name
-	genre
+  name
+  genre
 }
 ```
 
@@ -292,7 +299,7 @@ Let's flesh out the resolve function. It defines what should be returned from th
 
 ## Test Queries with GraphiQL
 
-We have a `songType` and a RootSchema to map out the graph. If we navigate to `localhost:4000/graphql` we will now see:
+We have a `SongType` and a RootSchema to map out the graph. Run `nodemon app.js` then navigate to `localhost:4000/graphql`:
 
 <br>
 
@@ -300,9 +307,7 @@ We have a `songType` and a RootSchema to map out the graph. If we navigate to `l
 
 <br>
 
-So GraphQL receives the request and assumes we want some data, but we must send a query string. We aren't able to interact directly via the browser.
-
-We can use [Graphiql](https://github.com/graphql/graphiql) to test out queries in the browser. It comes with the `express-graphql` package. To use it, we'll add a property to our middleware.
+So GraphQL receives the request and assumes we want some data, but we must send a query string to the endpoint via a `POST`. We can use [Graphiql](https://github.com/graphql/graphiql) to test out queries in the browser. It comes with the `express-graphql` package. To use it, we'll add a property to our middleware.
 
 ```js
 // app.js
