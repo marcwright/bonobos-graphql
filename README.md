@@ -1714,3 +1714,12 @@ import SongDetails from './SongDetails';
 
 ## Query a Single Record
 
+<br>
+
+## Additional Resources
+
+[AWS AppSync](https://docs.aws.amazon.com/appsync/latest/devguide/welcome.html)
+[Relay vs Apollo](https://hackernoon.com/apollo-vs-relay-modern-which-graphql-client-to-consider-using-in-2019-7488cc0cf02c)
+[Implementing Search in GraphQL](https://medium.com/open-graphql/implementing-search-in-graphql-11d5f71f179)
+[Using GraphQL](https://www.fullstackreact.com/p/using-graphql/)
+
