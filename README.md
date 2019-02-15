@@ -1643,6 +1643,25 @@ import { getArtistsQuery, addSongMutation, getSongsQuery } from './queries';
 
 <br>
 
+## Destructure `submitForm`
+
+Let's use destructuring to refactor the `sbumitForm` method.
+
+```js
+  submitForm(e) {
+    e.preventDefault();
+
+    const { title, genre, artistId } = this.state
+
+    this.props.addSongMutation({
+      variables: { title, genre, artistId },
+      refetchQueries: [{ query: getSongsQuery }]
+    })
+  }   
+```
+
+<br>
+
 ## `SongDetails` Component
 
 1. `touch src/components/SongDetails.js`
