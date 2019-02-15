@@ -28,15 +28,14 @@ class AddSong extends Component {
 
   submitForm(e) {
     e.preventDefault();
+
+    const { title, genre, artistId } = this.state
+
     this.props.addSongMutation({
-      variables: {
-        title: this.state.title,
-        genre: this.state.genre,
-        artistId: this.state.artistId
-      },
+      variables: { title, genre, artistId },
       refetchQueries: [{ query: getSongsQuery }]
     })
-  } 
+  }  
 
   render() {
     return (
