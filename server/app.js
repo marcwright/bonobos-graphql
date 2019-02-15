@@ -8,7 +8,7 @@ const app = express();
 
 app.use(cors());
 
-mongoose.connect('mongodb+srv://dieselwright:Password123!@cluster0-wym0l.mongodb.net/test?retryWrites=true', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://<USERNAME>:<PASSWORD>@cluster0-wym0l.mongodb.net/test?retryWrites=true', { useNewUrlParser: true });
 
 mongoose.connection.once('open', () => {
   console.log('connected to MongoDB Atlas database');

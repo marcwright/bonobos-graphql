@@ -695,7 +695,7 @@ function seedSongsAndArtists() {
   });
 }
 
-mongoose.connect('mongodb+srv://dieselwright:Password123!@cluster0-q30gy.mongodb.net/test?retryWrites=true', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://marcwright:<PASSWORD>@cluster0-q30gy.mongodb.net/test?retryWrites=true', { useNewUrlParser: true });
 
 mongoose.connection.once('open', () => {
   console.log('connected to MongoDB Atlas database');
@@ -816,12 +816,12 @@ To test this out, make sure to use the `_id` that MongoDB Atlas assigned to each
 GraphQL Mutations allow us to change or mutate our data. They're similar to the query pattern. We define what we're expecting from the user.
 
 1. Create a `const Mutation` object like RootQuery
-2. Give it a `name` property
+1. Give it a `name` property
 1. Define a `fields` object property
-2. Define args or what we're expecting from the user
-3. Add mongoose magic to resolve
-4. Make sure to return the `artist.save()`
-4. `module.exports` the Mutation
+1. Define args or what we're expecting from the user
+1. Add mongoose magic to resolve
+1. Make sure to return the `artist.save()`
+1. `module.exports` the Mutation
 
 ```js
 const Mutation = new GraphQLObjectType({
@@ -985,7 +985,7 @@ const Mutation = new GraphQLObjectType({
 ## Delete a song
 
 ```js
-	deleteSong: {
+    deleteSong: {
       type: SongType,
       args: {
         id: { type: GraphQLString }
@@ -1053,6 +1053,8 @@ class App extends Component {
 
 export default App;
 ```
+<br>
+
 ```js
 // index.js
 
@@ -1100,6 +1102,7 @@ class SongList extends Component {
 
 export default SongList;
 ```
+
 <br>
 
 ```jsx
@@ -1131,7 +1134,7 @@ export default App;
 
 Can be used with other libraries.
 
-12. `npm install apollo-boost react-apollo graphql`
+1. `npm install apollo-boost react-apollo graphql`
 
 ```jsx
 // App.js
@@ -1719,12 +1722,14 @@ import SongDetails from './SongDetails';
 
 ## Query a Single Record
 
+TO DO
+
 <br>
 
 ## Additional Resources
 
-[AWS AppSync](https://docs.aws.amazon.com/appsync/latest/devguide/welcome.html)
-[Relay vs Apollo](https://hackernoon.com/apollo-vs-relay-modern-which-graphql-client-to-consider-using-in-2019-7488cc0cf02c)
-[Implementing Search in GraphQL](https://medium.com/open-graphql/implementing-search-in-graphql-11d5f71f179)
-[Using GraphQL](https://www.fullstackreact.com/p/using-graphql/)
+- [AWS AppSync](https://docs.aws.amazon.com/appsync/latest/devguide/welcome.html)
+- [Relay vs Apollo](https://hackernoon.com/apollo-vs-relay-modern-which-graphql-client-to-consider-using-in-2019-7488cc0cf02c)
+- [Implementing Search in GraphQL](https://medium.com/open-graphql/implementing-search-in-graphql-11d5f71f179)
+- [Using GraphQL](https://www.fullstackreact.com/p/using-graphql/)
 
